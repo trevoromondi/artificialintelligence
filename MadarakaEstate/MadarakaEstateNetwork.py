@@ -18,7 +18,6 @@ G.nodes["Phase3"]['pos']=(-0.04416,0.04074)
 G.nodes["ParkingLot"]['pos']=(-0.044157,0.039358)
 
 
-
 G.nodes()#confirm nodes
 #Add Edges and their weights
 G.add_edge("SportsComplex","Siwaka",weight="450m")
