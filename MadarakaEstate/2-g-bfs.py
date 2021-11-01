@@ -1,6 +1,4 @@
-# importing networkx
 import networkx as nx
-# importing matplotlib.pyplot
 import matplotlib.pyplot as plt
 
 y = nx.Graph()
@@ -22,26 +20,23 @@ y.add_edge("STC", "ParkingLot")
 
 y.add_edge("Mada", "ParkingLot")
 
-# drawing in circular layout
-nx.draw(y, with_labels = True)
-plt.show()
 
-# This class represent a graph
+#Class representing a graph
 class Graph:
-    # Initialize the class
+    # Initializing the class
     def __init__(self, graph_dict=None, directed=True):
         self.graph_dict = graph_dict or {}
         self.directed = directed
         if not directed:
             self.make_undirected()
 
-    # Create an undirected graph by adding symmetric edges
+    # Creating an undirected graph 
     def make_undirected(self):
         for a in list(self.graph_dict.keys()):
             for (b, dist) in self.graph_dict[a].items():
                 self.graph_dict.setdefault(b, {})[a] = dist
 
-    # Add a link from A and B of given distance, and also add the inverse link if the graph is undirected
+    # Adding a link from A and B of given distance, and also add the inverse link if the graph is undirected
     def connect(self, A, B, distance=1):
         self.graph_dict.setdefault(A, {})[B] = distance
         if not self.directed:
@@ -62,10 +57,10 @@ class Graph:
         nodes = s1.union(s2)
         return list(nodes)
 
-# This class represent a node
+# Class representing a node
 class Node:
 
-    # Initialize the class
+    # Initializing the class
     def __init__(self, name:str, parent:str):
         self.name = name
         self.parent = parent
@@ -73,22 +68,22 @@ class Node:
         self.h = 0 # Distance to goal node
         self.f = 0 # Total cost
 
-    # Compare nodes
+    # Comparing nodes
     def __eq__(self, other):
         return self.name == other.name
 
-    # Sort nodes
+    # Sorting nodes
     def __lt__(self, other):
          return self.f < other.f
 
-    # Print node
+    # Printing node
     def __repr__(self):
         return ('({0},{1})'.format(self.position, self.f))
 
 # Best-first search
 def best_first_search(graph, heuristics, start, end):
     
-    # Create lists for open nodes and closed nodes
+    # Creating lists for open nodes and closed nodes
     open = []
     closed = []
 
